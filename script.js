@@ -1,3 +1,4 @@
+
 const input = document.getElementById('terminal-input');
 const output = document.getElementById('output');
 
