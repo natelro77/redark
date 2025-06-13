@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ACCESS GRANTED</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legend's Terminal</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="overlay"></div>
-  <div class="terminal">
-    <h1>WELCOME, NATE</h1>
-    <div class="output" id="output"></div>
-    <input type="text" id="terminal-input" placeholder="Type a command..." autofocus />
+  <canvas id="spiderweb"></canvas>
+
+  <div id="overlay">
+    <div id="terminal">
+      <div>> Type "help" for commands.</div>
+    </div>
+    <input id="command" type="text" autocomplete="off" autofocus />
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
