@@ -1,34 +1,52 @@
-alert("Script is connected!");
-const input = document.getElementById('terminal-input');
-const output = document.getElementById('output');
+body {
+  margin: 0;
+  background-color: black;
+  color: red;
+  font-family: monospace;
+  overflow: hidden;
+}
 
-const commands = {
-  hello: 'Hey there, legend. Welcome back to the underworld.',
-  clear: '',
-  help: 'Commands: hello, clear, glitch, love, power',
-  glitch: '⚠ SYSTEM MALFUNCTION ⚠',
-  love: 'You feeling soft today huh? ❤️',
-  power: '⚡⚡ THE CORE IS STABLE. ALL SYSTEMS GO. ⚡⚡',
-};
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  z-index: 1;
+}
 
-input.addEventListener('keydown', function (e) {
-  if (e.key === 'Enter') {
-    const cmd = input.value.trim().toLowerCase();
-    const response = commands[cmd] || 'Unknown command. Type "help".';
+#terminal {
+  margin-bottom: 10px;
+}
 
-    if (cmd === 'clear') {
-      output.innerHTML = '';
-    } else {
-      const newLine = document.createElement('div');
-      newLine.textContent = '> ' + cmd;
-      output.appendChild(newLine);
+#command {
+  background: black;
+  color: red;
+  border: none;
+  outline: none;
+  font-family: monospace;
+  font-size: 16px;
+  width: 80vw;
+}
 
-      const reply = document.createElement('div');
-      reply.textContent = response;
-      output.appendChild(reply);
-    }
+#spiderweb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
 
-    input.value = '';
-    output.scrollTop = output.scrollHeight;
-  }
-});
+.glitch {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px); }
+  20% { transform: translate(-1px, 2px); }
+  40% { transform: translate(-3px, 1px); }
+  60% { transform: translate(3px, 1px); }
+  80% { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, -2px); }
+}
