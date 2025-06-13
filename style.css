@@ -1,82 +1,25 @@
-// Click Sound
-document.addEventListener('click', () => {
-  const clickSound = new Audio('click.mp3');
-  clickSound.play();
-});
-
-// Commands
-const commands = {
-  help: 'Available: hello, help, clear, scream, glitch, boom, bugzy, summon',
-  hello: 'Hey there, legend.',
-  clear: 'clear',
-  scream: 'AHHHHHHHHH!',
-  glitch: '...glitching...',
-  boom: '💣 Boom.',
-  bugzy: 'She left traces in the code.',
-  summon: 'You summoned something... you shouldn’t have.',
-};
-
-// Input handler
-const input = document.getElementById('command');
-const terminal = document.getElementById('terminal');
-
-input.addEventListener('keydown', function (e) {
-  if (e.key === 'Enter') {
-    const command = input.value.trim();
-    input.value = '';
-
-    terminal.innerHTML += `<div>> ${command}</div>`;
-
-    if (command === 'clear') {
-      terminal.innerHTML = '';
-      return;
-    }
-
-    if (command === 'glitch') {
-      document.body.classList.add('glitch');
-      setTimeout(() => {
-        document.body.classList.remove('glitch');
-      }, 500);
-    }
-
-    if (command === 'boom') {
-      const boom = new Audio('boom.mp3');
-      boom.play();
-    }
-
-    const response = commands[command];
-    terminal.innerHTML += `<div>${response || 'Unknown command'}</div>`;
-  }
-});
-
-// Spiderweb Animation
-const canvas = document.getElementById('spiderweb');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const points = Array(100).fill().map(() => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height
-}));
-
-function drawWeb() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  points.forEach(p1 => {
-    points.forEach(p2 => {
-      const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-      if (dist < 100) {
-        ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-        ctx.stroke();
-      }
-    });
-    p1.x += Math.random() * 2 - 1;
-    p1.y += Math.random() * 2 - 1;
-  });
-  requestAnimationFrame(drawWeb);
+body {
+  margin: 0;
+  background-color: black;
+  color: red;
+  font-family: monospace;
 }
 
-drawWeb();
+#overlay {
+  padding: 20px;
+}
+
+#terminal {
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+}
+
+#command {
+  background: black;
+  color: red;
+  border: none;
+  outline: none;
+  font-family: monospace;
+  font-size: 16px;
+  width: 90vw;
+}
